@@ -170,3 +170,49 @@ function setGreeting() {
 
 // Run the function when the page loads
 window.onload = setGreeting;
+
+
+// CART COUNTER 
+// --- SHOPPING CART COUNT LOGIC ---
+
+// 1. Select all 'Add to Cart' buttons (the icons in your product cards)
+const cartButtons = document.querySelectorAll('.cart');
+
+// 2. Select the badge spans (we have two: one for desktop, one for mobile)
+const cartBadges = document.querySelectorAll('.cart-badge');
+
+// 3. Initialize count from LocalStorage (so data persists on refresh)
+let cartCount = localStorage.getItem('cartCount') ? parseInt(localStorage.getItem('cartCount')) : 0;
+
+// Function to update the number on the screen
+function updateCartDisplay() {
+    cartBadges.forEach(badge => {
+        badge.innerText = cartCount;
+    });
+}
+
+// Run immediately to show saved number on page load
+updateCartDisplay();
+
+// 4. Add Click Event Listeners to every cart icon
+cartButtons.forEach(button => {
+    // We attach the listener to the parent <a> tag to prevent the page from jumping
+    button.parentElement.addEventListener('click', (e) => {
+        e.preventDefault(); // Stop the link from reloading the page
+        
+        // Increase count
+        cartCount++;
+        
+        // Save to browser memory
+        localStorage.setItem('cartCount', cartCount);
+        
+        // Update the screen
+        updateCartDisplay();
+        
+        // Optional: Simple alert feedback
+        // alert("Item added to cart!"); 
+        
+        // Optional: Console log for testing
+        console.log("Current Cart Count: " + cartCount);
+    });
+});

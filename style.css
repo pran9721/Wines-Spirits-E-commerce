@@ -138,6 +138,28 @@ body {
 #lg-bag:hover {
   color: teal;
 }
+#lg-bag a, 
+#mobile a {
+    position: relative; /* Allows us to position the badge absolute to the bag */
+}
+
+.cart-badge {
+    position: absolute;
+    top: -10px; /* Adjusts vertical position */
+    right: -17px; /* Adjusts horizontal position */
+    background-color: teal; /* Red background */
+    color: white;
+    padding: 2px 6px;
+    border-radius: 50%; /* Makes it circular */
+    font-size: 10px;
+    font-weight: 700;
+}
+
+/* Mobile fix to ensure it doesn't look weird */
+#mobile .cart-badge {
+    top: -5px;
+    right: 5px;
+}
 
 /* #navbar li a.active::after{
   /* content: ""; */

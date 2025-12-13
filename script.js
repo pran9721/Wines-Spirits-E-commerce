@@ -140,3 +140,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+
+
+// DYNAMIC GREETING & DATE
+function setGreeting() {
+    const greetingBox = document.getElementById('greeting-box');
+    const now = new Date();
+    const hours = now.getHours();
+    
+    let greetingText = '';
+
+    // Logic for Morning, Afternoon, Evening
+    if (hours < 12) {
+        greetingText = 'Good Morning ';
+    } else if (hours >= 12 && hours < 17) {
+        greetingText = 'Good Afternoon ';
+    } else {
+        greetingText = 'Good Evening ';
+    }
+
+    // Format the date (e.g., Saturday, Dec 13, 2025)
+    const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+    const dateString = now.toLocaleDateString('en-US', options);
+
+    // Inject into HTML
+    greetingBox.innerHTML = `${greetingText}, today is <span>${dateString}</span>`;
+}
+
+// Run the function when the page loads
+window.onload = setGreeting;

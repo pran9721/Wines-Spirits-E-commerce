@@ -78,7 +78,9 @@ button.normal {
 
 body {
   width: 100%;
+  
 }
+
 
 .logo {
   width: 13vw;
@@ -1116,4 +1118,114 @@ footer .colf :hover {
   font-size: 16px;
   font-weight: 600;
   color: teal;
+}
+/* ========================================= */
+/* --- STRONGER DARK MODE STYLES --- */
+/* Paste this at the VERY END of style.css */
+/* ========================================= */
+
+/* 1. Toggle Button */
+#theme-toggle {
+    font-size: 20px;
+    cursor: pointer;
+    color: #1a1a1a;
+    transition: 0.3s;
+    padding: 0 20px;
+}
+body.dark-mode #theme-toggle {
+    color: #e0e0e0;
+}
+
+/* 2. Global Dark Backgrounds & Text */
+body.dark-mode {
+    background-color: #121212 !important;
+    color: #e0e0e0 !important;
+}
+
+/* We use !important here to override specific ID colors (like #page-header2 h2) */
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3, 
+body.dark-mode h4, 
+body.dark-mode h6,
+body.dark-mode p,
+body.dark-mode span,
+body.dark-mode li,
+body.dark-mode i {
+    color: #e0e0e0 !important;
+}
+
+/* 3. Header & Navbar */
+body.dark-mode #header {
+    background-color: #1f1f1f !important;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode #navbar li a {
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode #navbar li a:hover,
+body.dark-mode #navbar li a.active {
+    color: teal !important; /* Keep the active color teal */
+}
+
+/* 4. Product Cards & Feature Boxes */
+body.dark-mode .pro, 
+body.dark-mode .fe-box {
+    background-color: #1f1f1f !important;
+    border: 1px solid #333 !important;
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Keep price/title popping in teal */
+body.dark-mode .pro .description h4,
+body.dark-mode .pro .cart {
+    color: teal !important; 
+}
+
+/* 5. Contact Form & Inputs */
+body.dark-mode input, 
+body.dark-mode textarea {
+    background-color: #2b2b2b !important;
+    border: 1px solid #444 !important;
+    color: #fff !important;
+}
+
+/* 6. Footer */
+body.dark-mode footer {
+    background-color: #1f1f1f !important; 
+}
+body.dark-mode .footer {
+    background-color: #121212 !important;
+}
+
+/* 7. Mobile Menu Background */
+@media (max-width: 799px) {
+    body.dark-mode #navbar {
+        background-color: #1f1f1f !important;
+    }
+}
+
+
+/* Fix bright sections in dark mode */
+
+body.dark-mode #hero,
+body.dark-mode #banner,
+body.dark-mode #page-header,
+body.dark-mode #page-header2 {
+  /* background-image: none !important; */
+  background-color: #121212 !important;
+}
+
+body.dark-mode #newsletter {
+  background-color: #1f1f1f !important;
+}
+
+body.dark-mode .banner-box {
+  /* background-image: none !important; */
+  background-color: #1a1a1a !important;
+}
+body.dark-mode #contact-details .map iframe {
+  filter: invert(1) hue-rotate(180deg) !important;
 }

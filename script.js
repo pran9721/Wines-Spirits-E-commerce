@@ -44,3 +44,88 @@ if (close) {
 // smallImg[2].onclick = function(){
 //     mainImg.src = smallImg[2].src;
 // }
+
+
+// contact form  validation 
+    // 1. Select the form and elements
+        const form = document.getElementById('contactForm');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const subjectInput = document.getElementById('subject');
+        const messageInput = document.getElementById('message');
+        const errorMsg = document.getElementById('error-msg');
+
+        // 2. Add Event Listener
+        form.addEventListener('submit', (e) => {
+
+            // Reset error messages/styles on every click
+            let messages = [];
+            errorMsg.style.display = 'none';
+            nameInput.style.border = "1px solid #e1e1e1";
+            emailInput.style.border = "1px solid #e1e1e1";
+
+            // --- VALIDATION LOGIC ---
+
+            // Check if Name is empty
+            if (nameInput.value.trim() === '') {
+                messages.push("Name is required");
+                nameInput.style.border = "1px solid red";
+            }
+
+            // Check Email (Must contain '@' and not be empty)
+            // We trim() to remove accidental spaces
+            const emailValue = emailInput.value.trim();
+
+            if (emailValue === '') {
+                messages.push("Email is required");
+                emailInput.style.border = "1px solid red";
+            } else if (!emailValue.includes('@')) {
+                messages.push("Email must contain an '@' sign");
+                emailInput.style.border = "1px solid red";
+            } else if (emailValue.length < 5) {
+                messages.push("Email is too short");
+                emailInput.style.border = "1px solid red";
+            }
+
+            // Check Subject
+            if (subjectInput.value.trim() === '') {
+                messages.push("Subject is required");
+            }
+
+            // Check Message
+            if (messageInput.value.trim() === '') {
+                messages.push("Message cannot be empty");
+            }
+
+            // --- FINAL DECISION ---
+
+            // If we have any error messages, stop the form
+            if (messages.length > 0) {
+                e.preventDefault(); // STOPS the form from refreshing/submitting
+                errorMsg.innerText = messages.join(', '); // Show errors separated by comma
+                errorMsg.style.display = 'block'; // Reveal the error text
+            } else {
+                // Form is valid!
+                // e.preventDefault(); // Uncomment this line if you want to stop reload even on success (for testing)
+                alert("Form Submitted Successfully!");
+            }
+        });
+
+        // REAL-TIME VALIDATION FOR EMAIL
+// This listens to every keystroke inside the email box
+emailInput.addEventListener('input', function() {
+    const emailValue = emailInput.value.trim();
+
+    // If there is text, but no @ sign...
+    if (emailValue.length > 0 && !emailValue.includes('@')) {
+        // Turn border red immediately
+        emailInput.style.border = "1px solid red";
+        // Optional: Show a quick message
+        errorMsg.style.display = 'block';
+        errorMsg.innerText = "Don't forget the @ sign!";
+    } else {
+        // If it looks okay (or is empty), clear the red border
+        emailInput.style.border = "1px solid #e1e1e1";
+        errorMsg.style.display = 'none';
+    }
+});
